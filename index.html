@@ -1,358 +1,846 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>SmartToolHub - Free Online Tools</title>
-  <meta name="description" content="SmartToolHub provides free online tools including calculators, typing tests and word counters.">
+<title>SmartToolHub V2 - Free Online Tools</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<meta name="description"
+content="SmartToolHub V2 - Free online tools including percentage calculator, word counter and typing speed test.">
 
-    body {
-      background: #f5f7fb;
-      color: #172033;
-    }
+<style>
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 18px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,Helvetica,sans-serif;
+}
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-    }
+body{
+background:#f4f7fb;
+color:#172033;
+transition:.3s;
+}
 
-    .logo span {
-      color: #22c55e;
-    }
+header{
+background:#111827;
+color:white;
+padding:18px 20px;
+position:sticky;
+top:0;
+z-index:100;
+box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 18px;
-      font-size: 14px;
-    }
+.nav{
+max-width:1100px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+}
 
-    .hero {
-      text-align: center;
-      padding: 70px 20px;
-      background: linear-gradient(135deg, #111827, #1e3a8a);
-      color: white;
-    }
+.logo{
+font-size:25px;
+font-weight:bold;
+}
 
-    .hero h1 {
-      font-size: 42px;
-      margin-bottom: 15px;
-    }
+.logo span{
+color:#38bdf8;
+}
 
-    .hero p {
-      font-size: 18px;
-      opacity: 0.9;
-      margin-bottom: 25px;
-    }
+.nav button{
+border:none;
+background:#1f2937;
+color:white;
+padding:10px 15px;
+border-radius:10px;
+cursor:pointer;
+font-size:14px;
+}
 
-    .btn {
-      display: inline-block;
-      background: #22c55e;
-      color: white;
-      padding: 13px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+.hero{
+max-width:1100px;
+margin:35px auto 20px;
+padding:20px;
+text-align:center;
+}
 
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: 40px auto;
-    }
+.hero h1{
+font-size:42px;
+margin-bottom:12px;
+}
 
-    .section-title {
-      text-align: center;
-      margin-bottom: 25px;
-      font-size: 30px;
-    }
+.hero h1 span{
+color:#2563eb;
+}
 
-    .tools {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
+.hero p{
+font-size:18px;
+color:#64748b;
+line-height:1.6;
+}
 
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 14px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    }
+.container{
+max-width:1100px;
+margin:auto;
+padding:15px;
+}
 
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 21px;
-    }
+.tools-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
 
-    .card p {
-      color: #64748b;
-      margin-bottom: 15px;
-      line-height: 1.5;
-    }
+.card{
+background:white;
+border-radius:20px;
+padding:25px;
+box-shadow:0 8px 25px rgba(15,23,42,.08);
+transition:.25s;
+}
 
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
-      margin: 7px 0;
-      font-size: 16px;
-    }
+.card:hover{
+transform:translateY(-4px);
+}
 
-    button {
-      border: none;
-      background: #2563eb;
-      color: white;
-      padding: 11px 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 8px;
-      font-size: 15px;
-    }
+.card h2{
+font-size:23px;
+margin-bottom:8px;
+}
 
-    button:hover {
-      background: #1d4ed8;
-    }
+.card p{
+color:#64748b;
+margin-bottom:18px;
+line-height:1.5;
+}
 
-    .result {
-      margin-top: 12px;
-      font-weight: bold;
-      color: #16a34a;
-    }
+input,
+textarea{
+width:100%;
+padding:15px;
+border:2px solid #e2e8f0;
+border-radius:12px;
+font-size:16px;
+outline:none;
+margin-bottom:12px;
+resize:vertical;
+}
 
-    footer {
-      margin-top: 50px;
-      background: #111827;
-      color: white;
-      text-align: center;
-      padding: 25px;
-    }
+input:focus,
+textarea:focus{
+border-color:#2563eb;
+}
 
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 32px;
-      }
+textarea{
+min-height:150px;
+}
 
-      nav {
-        display: none;
-      }
-    }
-  </style>
+.btn{
+border:none;
+background:#2563eb;
+color:white;
+padding:13px 20px;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+margin:4px;
+}
+
+.btn:hover{
+background:#1d4ed8;
+}
+
+.btn.secondary{
+background:#64748b;
+}
+
+.result{
+margin-top:15px;
+padding:15px;
+background:#ecfdf5;
+color:#15803d;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+min-height:25px;
+}
+
+.counter{
+font-size:18px;
+font-weight:bold;
+color:#16a34a;
+margin-top:10px;
+}
+
+.typing-text{
+background:#f8fafc;
+padding:15px;
+border-radius:12px;
+line-height:1.7;
+margin-bottom:15px;
+font-size:17px;
+}
+
+.about{
+margin-top:35px;
+}
+
+.about-box{
+background:white;
+border-radius:20px;
+padding:30px;
+box-shadow:0 8px 25px rgba(15,23,42,.08);
+}
+
+footer{
+margin-top:50px;
+background:#111827;
+color:white;
+text-align:center;
+padding:25px 15px;
+}
+
+footer p{
+color:#cbd5e1;
+margin-top:8px;
+}
+
+@media(max-width:600px){
+
+.hero h1{
+font-size:31px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+.card{
+padding:20px;
+}
+
+.logo{
+font-size:21px;
+}
+
+}
+
+.dark{
+background:#0f172a;
+color:#f8fafc;
+}
+
+.dark .hero p{
+color:#94a3b8;
+}
+
+.dark .card,
+.dark .about-box{
+background:#1e293b;
+color:#f8fafc;
+}
+
+.dark .card p{
+color:#cbd5e1;
+}
+
+.dark input,
+.dark textarea{
+background:#0f172a;
+color:white;
+border-color:#475569;
+}
+
+.dark .typing-text{
+background:#0f172a;
+}
+
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">Smart<span>ToolHub</span></div>
+<header>
 
-    <nav>
-      <a href="#tools">Tools</a>
-      <a href="#about">About</a>
-    </nav>
-  </header>
+<div class="nav">
 
-  <section class="hero">
-    <h1>Smart Tools. Simple Life.</h1>
+<div class="logo">
+Smart<span>ToolHub</span>
+</div>
 
-    <p>
-      Free online tools for students, creators and everyday users.
-    </p>
+<button onclick="toggleTheme()" id="themeBtn">
+🌙 Dark Mode
+</button>
 
-    <a href="#tools" class="btn">Explore Tools</a>
-  </section>
+</div>
 
-  <main class="container" id="tools">
-
-    <h2 class="section-title">Free Online Tools</h2>
-
-    <div class="tools">
-
-      <!-- Percentage Calculator -->
-      <div class="card">
-        <h3>🧮 Percentage Calculator</h3>
-
-        <p>Calculate percentage quickly and easily.</p>
-
-        <input type="number" id="number" placeholder="Enter number">
-
-        <input type="number" id="total" placeholder="Enter total">
-
-        <button onclick="calculatePercentage()">
-          Calculate
-        </button>
-
-        <div class="result" id="percentageResult"></div>
-      </div>
+</header>
 
 
-      <!-- Word Counter -->
-      <div class="card">
-        <h3>📝 Word Counter</h3>
+<section class="hero">
 
-        <p>Count words and characters in your text.</p>
+<h1>Smart<span>ToolHub</span> V2</h1>
 
-        <textarea
-          id="text"
-          rows="5"
-          placeholder="Type or paste your text here..."
-          oninput="countWords()"
-        ></textarea>
+<p>
+Free, simple and useful online tools for everyday digital tasks.
+</p>
 
-        <div class="result" id="wordResult">
-          Words: 0 | Characters: 0
-        </div>
-      </div>
+</section>
 
 
-      <!-- Typing Test -->
-      <div class="card">
-        <h3>⌨️ Typing Speed Test</h3>
+<main class="container">
 
-        <p>Test your typing speed.</p>
-
-        <p id="typingText">
-          The quick brown fox jumps over the lazy dog.
-        </p>
-
-        <textarea
-          id="typingInput"
-          rows="4"
-          placeholder="Start typing here..."
-          oninput="typingTest()"
-        ></textarea>
-
-        <div class="result" id="typingResult">
-          Start typing to begin the test.
-        </div>
-      </div>
-
-    </div>
-  </main>
+<div class="tools-grid">
 
 
-  <section class="container" id="about">
+<!-- Percentage Calculator -->
 
-    <h2 class="section-title">About SmartToolHub</h2>
+<div class="card">
 
-    <div class="card">
-      <p>
-        SmartToolHub is a free online tools project designed to make
-        everyday digital tasks easier, faster and simpler.
-      </p>
-    </div>
+<h2>📊 Percentage Calculator</h2>
 
-  </section>
+<p>
+Calculate percentage quickly and easily.
+</p>
 
+<input
+type="number"
+id="number"
+placeholder="Enter number">
 
-  <footer>
-    <p>© 2026 SmartToolHub. All Rights Reserved.</p>
-  </footer>
+<input
+type="number"
+id="total"
+placeholder="Enter total">
 
+<button
+class="btn"
+onclick="calculatePercentage()">
+Calculate
+</button>
 
-  <script>
+<button
+class="btn secondary"
+onclick="clearPercentage()">
+Clear
+</button>
 
-    // Percentage Calculator
-    function calculatePercentage() {
+<div
+class="result"
+id="percentageResult">
+</div>
 
-      const number = parseFloat(
-        document.getElementById("number").value
-      );
-
-      const total = parseFloat(
-        document.getElementById("total").value
-      );
-
-      const result = document.getElementById("percentageResult");
-
-      if (isNaN(number) || isNaN(total) || total === 0) {
-        result.innerText = "Please enter valid numbers.";
-        return;
-      }
-
-      const percentage = (number / total) * 100;
-
-      result.innerText =
-        "Result: " + percentage.toFixed(2) + "%";
-    }
+</div>
 
 
-    // Word Counter
-    function countWords() {
+<!-- Word Counter -->
 
-      const text =
-        document.getElementById("text").value;
+<div class="card">
 
-      const words =
-        text.trim() === ""
-        ? 0
-        : text.trim().split(/\s+/).length;
+<h2>📝 Word Counter</h2>
 
-      const characters = text.length;
+<p>
+Count words, characters and spaces in your text.
+</p>
 
-      document.getElementById("wordResult").innerText =
-        "Words: " + words +
-        " | Characters: " + characters;
-    }
+<textarea
+id="wordText"
+placeholder="Type or paste your text here..."
+oninput="countWords()"></textarea>
+
+<div
+class="counter"
+id="wordResult">
+Words: 0 | Characters: 0
+</div>
+
+<button
+class="btn secondary"
+onclick="clearWords()">
+Clear
+</button>
+
+</div>
 
 
-    // Typing Test
-    let startTime = null;
+<!-- Typing Test -->
 
-    function typingTest() {
+<div class="card">
 
-      const input =
-        document.getElementById("typingInput").value;
+<h2>⌨️ Typing Speed Test</h2>
 
-      const result =
-        document.getElementById("typingResult");
+<p>
+Test your typing speed and improve your skills.
+</p>
 
-      if (input.length === 1) {
-        startTime = new Date();
-      }
+<div class="typing-text" id="typingText">
+The quick brown fox jumps over the lazy dog.
+</div>
 
-      if (input.length === 0) {
-        result.innerText =
-          "Start typing to begin the test.";
-        return;
-      }
+<textarea
+id="typingInput"
+placeholder="Start typing here..."
+oninput="typingTest()"></textarea>
 
-      const currentTime = new Date();
+<div
+class="counter"
+id="typingResult">
+Typing Speed: 0 WPM
+</div>
 
-      const seconds =
-        (currentTime - startTime) / 1000;
+<button
+class="btn secondary"
+onclick="resetTyping()">
+Reset Test
+</button>
 
-      const minutes = seconds / 60;
+</div>
 
-      const words =
-        input.trim().split(/\s+/).length;
 
-      const wpm =
-        minutes > 0 ? Math.round(words / minutes) : 0;
+<!-- Text Case Converter -->
 
-      result.innerText =
-        "Typing Speed: " + wpm + " WPM";
-    }
+<div class="card">
 
-  </script>
+<h2>🔤 Text Case Converter</h2>
+
+<p>
+Convert your text to uppercase or lowercase.
+</p>
+
+<textarea
+id="caseText"
+placeholder="Enter your text..."></textarea>
+
+<button
+class="btn"
+onclick="upperCase()">
+UPPERCASE
+</button>
+
+<button
+class="btn"
+onclick="lowerCase()">
+lowercase
+</button>
+
+<button
+class="btn secondary"
+onclick="clearCase()">
+Clear
+</button>
+
+</div>
+
+
+<!-- Copy Text Tool -->
+
+<div class="card">
+
+<h2>📋 Quick Copy Tool</h2>
+
+<p>
+Write text and copy it to your clipboard.
+</p>
+
+<textarea
+id="copyText"
+placeholder="Enter text to copy..."></textarea>
+
+<button
+class="btn"
+onclick="copyText()">
+Copy Text
+</button>
+
+<button
+class="btn secondary"
+onclick="clearCopy()">
+Clear
+</button>
+
+<div
+class="result"
+id="copyResult">
+</div>
+
+</div>
+
+
+<!-- Simple Calculator -->
+
+<div class="card">
+
+<h2>🧮 Quick Calculator</h2>
+
+<p>
+Perform basic mathematical calculations.
+</p>
+
+<input
+type="number"
+id="calcA"
+placeholder="First number">
+
+<input
+type="number"
+id="calcB"
+placeholder="Second number">
+
+<button
+class="btn"
+onclick="calculate('+')">
++
+</button>
+
+<button
+class="btn"
+onclick="calculate('-')">
+−
+</button>
+
+<button
+class="btn"
+onclick="calculate('*')">
+×
+</button>
+
+<button
+class="btn"
+onclick="calculate('/')">
+÷
+</button>
+
+<div
+class="result"
+id="calcResult">
+Result:
+</div>
+
+</div>
+
+</div>
+
+
+<section class="about">
+
+<h2 style="text-align:center;font-size:32px;margin-bottom:20px;">
+About SmartToolHub
+</h2>
+
+<div class="about-box">
+
+<p style="font-size:18px;line-height:1.7;color:#64748b;">
+SmartToolHub is a free online tools project designed to make
+everyday digital tasks easier, faster and simpler.
+</p>
+
+<br>
+
+<p style="font-size:17px;line-height:1.7;color:#64748b;">
+Version 2 introduces a cleaner design, additional tools,
+dark mode and improved mobile experience.
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<h3>SmartToolHub</h3>
+
+<p>
+Free Online Tools for Everyone
+</p>
+
+<p>
+© 2026 SmartToolHub. All Rights Reserved.
+</p>
+
+</footer>
+
+
+<script>
+
+/* Percentage Calculator */
+
+function calculatePercentage(){
+
+const number =
+parseFloat(document.getElementById("number").value);
+
+const total =
+parseFloat(document.getElementById("total").value);
+
+const result =
+document.getElementById("percentageResult");
+
+if(isNaN(number) || isNaN(total)){
+
+result.innerText="Please enter both numbers.";
+
+return;
+
+}
+
+if(total===0){
+
+result.innerText="Total cannot be zero.";
+
+return;
+
+}
+
+const percentage=(number/total)*100;
+
+result.innerText=
+"Percentage: "+percentage.toFixed(2)+"%";
+
+}
+
+
+function clearPercentage(){
+
+document.getElementById("number").value="";
+document.getElementById("total").value="";
+document.getElementById("percentageResult").innerText="";
+
+}
+
+
+/* Word Counter */
+
+function countWords(){
+
+const text =
+document.getElementById("wordText").value;
+
+const characters=text.length;
+
+const words=text.trim()===""
+?0
+:text.trim().split(/\s+/).length;
+
+document.getElementById("wordResult").innerText=
+"Words: "+words+" | Characters: "+characters;
+
+}
+
+
+function clearWords(){
+
+document.getElementById("wordText").value="";
+
+document.getElementById("wordResult").innerText=
+"Words: 0 | Characters: 0";
+
+}
+
+
+/* Typing Speed */
+
+let startTime=null;
+
+function typingTest(){
+
+const input=
+document.getElementById("typingInput").value;
+
+const result=
+document.getElementById("typingResult");
+
+if(input.length===1){
+
+startTime=new Date();
+
+}
+
+if(input.length===0){
+
+result.innerText="Typing Speed: 0 WPM";
+
+return;
+
+}
+
+const currentTime=new Date();
+
+const seconds=
+(currentTime-startTime)/1000;
+
+const minutes=seconds/60;
+
+const words=
+input.trim().split(/\s+/).length;
+
+const wpm=
+minutes>0
+?Math.round(words/minutes)
+:0;
+
+result.innerText=
+"Typing Speed: "+wpm+" WPM";
+
+}
+
+
+function resetTyping(){
+
+document.getElementById("typingInput").value="";
+
+document.getElementById("typingResult").innerText=
+"Typing Speed: 0 WPM";
+
+startTime=null;
+
+}
+
+
+/* Text Case Converter */
+
+function upperCase(){
+
+const box=document.getElementById("caseText");
+
+box.value=box.value.toUpperCase();
+
+}
+
+
+function lowerCase(){
+
+const box=document.getElementById("caseText");
+
+box.value=box.value.toLowerCase();
+
+}
+
+
+function clearCase(){
+
+document.getElementById("caseText").value="";
+
+}
+
+
+/* Copy Tool */
+
+function copyText(){
+
+const text=
+document.getElementById("copyText").value;
+
+const result=
+document.getElementById("copyResult");
+
+if(text.trim()===""){
+
+result.innerText="Please enter some text.";
+
+return;
+
+}
+
+navigator.clipboard.writeText(text);
+
+result.innerText="✓ Text copied successfully!";
+
+}
+
+
+function clearCopy(){
+
+document.getElementById("copyText").value="";
+
+document.getElementById("copyResult").innerText="";
+
+}
+
+
+/* Calculator */
+
+function calculate(operator){
+
+const a=
+parseFloat(document.getElementById("calcA").value);
+
+const b=
+parseFloat(document.getElementById("calcB").value);
+
+const result=
+document.getElementById("calcResult");
+
+if(isNaN(a)||isNaN(b)){
+
+result.innerText="Please enter both numbers.";
+
+return;
+
+}
+
+let answer;
+
+if(operator==="+"){
+answer=a+b;
+}
+
+if(operator==="-"){
+answer=a-b;
+}
+
+if(operator==="*"){
+answer=a*b;
+}
+
+if(operator==="/"){
+
+if(b===0){
+
+result.innerText="Cannot divide by zero.";
+
+return;
+
+}
+
+answer=a/b;
+
+}
+
+result.innerText="Result: "+answer;
+
+}
+
+
+/* Dark Mode */
+
+function toggleTheme(){
+
+document.body.classList.toggle("dark");
+
+const button=
+document.getElementById("themeBtn");
+
+if(document.body.classList.contains("dark")){
+
+button.innerText="☀️ Light Mode";
+
+}else{
+
+button.innerText="🌙 Dark Mode";
+
+}
+
+}
+
+</script>
 
 </body>
 </html>
