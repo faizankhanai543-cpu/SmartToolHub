@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SmartToolHub - Free Online Tools</title>
+  <meta name="description" content="SmartToolHub provides free online tools including calculators, typing tests and word counters.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #22c55e;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 14px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 70px 20px;
+      background: linear-gradient(135deg, #111827, #1e3a8a);
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      opacity: 0.9;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #22c55e;
+      color: white;
+      padding: 13px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 40px auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 30px;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    .card p {
+      color: #64748b;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      margin: 7px 0;
+      font-size: 16px;
+    }
+
+    button {
+      border: none;
+      background: #2563eb;
+      color: white;
+      padding: 11px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 8px;
+      font-size: 15px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result {
+      margin-top: 12px;
+      font-weight: bold;
+      color: #16a34a;
+    }
+
+    footer {
+      margin-top: 50px;
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">Smart<span>ToolHub</span></div>
+
+    <nav>
+      <a href="#tools">Tools</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Smart Tools. Simple Life.</h1>
+
+    <p>
+      Free online tools for students, creators and everyday users.
+    </p>
+
+    <a href="#tools" class="btn">Explore Tools</a>
+  </section>
+
+  <main class="container" id="tools">
+
+    <h2 class="section-title">Free Online Tools</h2>
+
+    <div class="tools">
+
+      <!-- Percentage Calculator -->
+      <div class="card">
+        <h3>🧮 Percentage Calculator</h3>
+
+        <p>Calculate percentage quickly and easily.</p>
+
+        <input type="number" id="number" placeholder="Enter number">
+
+        <input type="number" id="total" placeholder="Enter total">
+
+        <button onclick="calculatePercentage()">
+          Calculate
+        </button>
+
+        <div class="result" id="percentageResult"></div>
+      </div>
+
+
+      <!-- Word Counter -->
+      <div class="card">
+        <h3>📝 Word Counter</h3>
+
+        <p>Count words and characters in your text.</p>
+
+        <textarea
+          id="text"
+          rows="5"
+          placeholder="Type or paste your text here..."
+          oninput="countWords()"
+        ></textarea>
+
+        <div class="result" id="wordResult">
+          Words: 0 | Characters: 0
+        </div>
+      </div>
+
+
+      <!-- Typing Test -->
+      <div class="card">
+        <h3>⌨️ Typing Speed Test</h3>
+
+        <p>Test your typing speed.</p>
+
+        <p id="typingText">
+          The quick brown fox jumps over the lazy dog.
+        </p>
+
+        <textarea
+          id="typingInput"
+          rows="4"
+          placeholder="Start typing here..."
+          oninput="typingTest()"
+        ></textarea>
+
+        <div class="result" id="typingResult">
+          Start typing to begin the test.
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+
+  <section class="container" id="about">
+
+    <h2 class="section-title">About SmartToolHub</h2>
+
+    <div class="card">
+      <p>
+        SmartToolHub is a free online tools project designed to make
+        everyday digital tasks easier, faster and simpler.
+      </p>
+    </div>
+
+  </section>
+
+
+  <footer>
+    <p>© 2026 SmartToolHub. All Rights Reserved.</p>
+  </footer>
+
+
+  <script>
+
+    // Percentage Calculator
+    function calculatePercentage() {
+
+      const number = parseFloat(
+        document.getElementById("number").value
+      );
+
+      const total = parseFloat(
+        document.getElementById("total").value
+      );
+
+      const result = document.getElementById("percentageResult");
+
+      if (isNaN(number) || isNaN(total) || total === 0) {
+        result.innerText = "Please enter valid numbers.";
+        return;
+      }
+
+      const percentage = (number / total) * 100;
+
+      result.innerText =
+        "Result: " + percentage.toFixed(2) + "%";
+    }
+
+
+    // Word Counter
+    function countWords() {
+
+      const text =
+        document.getElementById("text").value;
+
+      const words =
+        text.trim() === ""
+        ? 0
+        : text.trim().split(/\s+/).length;
+
+      const characters = text.length;
+
+      document.getElementById("wordResult").innerText =
+        "Words: " + words +
+        " | Characters: " + characters;
+    }
+
+
+    // Typing Test
+    let startTime = null;
+
+    function typingTest() {
+
+      const input =
+        document.getElementById("typingInput").value;
+
+      const result =
+        document.getElementById("typingResult");
+
+      if (input.length === 1) {
+        startTime = new Date();
+      }
+
+      if (input.length === 0) {
+        result.innerText =
+          "Start typing to begin the test.";
+        return;
+      }
+
+      const currentTime = new Date();
+
+      const seconds =
+        (currentTime - startTime) / 1000;
+
+      const minutes = seconds / 60;
+
+      const words =
+        input.trim().split(/\s+/).length;
+
+      const wpm =
+        minutes > 0 ? Math.round(words / minutes) : 0;
+
+      result.innerText =
+        "Typing Speed: " + wpm + " WPM";
+    }
+
+  </script>
+
+</body>
+</html>
